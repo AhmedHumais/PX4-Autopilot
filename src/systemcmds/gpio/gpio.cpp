@@ -41,8 +41,25 @@
 #include <px4_platform_common/log.h>
 #include <px4_platform_common/module.h>
 #include <px4_platform_common/px4_config.h>
+#include <ctype.h>
 
 static void usage(const char *reason);
+
+int strcasecmp(FAR const char *cs, FAR const char *ct)
+{
+  int result;
+  for (; ; )
+    {
+      if ((result = (int)toupper(*cs) - (int)toupper(*ct)) != 0 || !*cs)
+        {
+          break;
+        }
+
+      cs++;
+      ct++;
+    }
+  return result;
+}
 
 extern "C" __EXPORT int gpio_main(int argc, char *argv[])
 {

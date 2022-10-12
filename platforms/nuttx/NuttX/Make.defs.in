@@ -54,7 +54,7 @@ ifneq (, $(findstring CYGWIN, $(shell uname)))
 else
   MKDEP = $(TOPDIR)/tools/mkdeps$(HOSTEXEEXT)
   ARCHINCLUDES = -I. -isystem $(TOPDIR)/include
-  ARCHXXINCLUDES = $(ARCHINCLUDES) -isystem $(TOPDIR)/include/cxx
+  ARCHXXINCLUDES = -isystem $(TOPDIR)/include/libcxx $(ARCHINCLUDES)
 endif
 
 # Windows toolchain (MSYS & Cygwin) symbolic link handling
@@ -124,12 +124,17 @@ CXXFLAGS = $(ARCHXXINCLUDES) \
 	-nostdinc++ \
 	${CMAKE_CXX_FLAGS} \
 	$(FLAGS) \
+	-D__NuttX__ \
+	-D__GLIBCXX__ \
+	-D_LIBCPP_BUILDING_LIBRARY \
+	-D_LIBCPP_BUILD_STATIC \
+	-D_LIBCPP_NO_EXCEPTIONS \
 	-fcheck-new \
+	-fpermissive \
 	-fno-builtin \
 	-fno-exceptions \
 	-fno-rtti \
 	-fno-sized-deallocation \
-	-nostdinc++ \
 	-Wno-double-promotion \
 	-Wno-missing-declarations
 

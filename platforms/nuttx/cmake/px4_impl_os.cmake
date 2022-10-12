@@ -52,8 +52,9 @@ function(px4_os_add_flags)
 
 	include_directories(BEFORE SYSTEM
 		${PX4_BINARY_DIR}/NuttX/nuttx/include
-		${PX4_BINARY_DIR}/NuttX/nuttx/include/cxx
-		${PX4_SOURCE_DIR}/platforms/nuttx/NuttX/include/cxx	# custom new
+		${PX4_BINARY_DIR}/NuttX/nuttx/include/libcxx
+		# ${PX4_BINARY_DIR}/NuttX/nuttx/include/cxx
+		# ${PX4_SOURCE_DIR}/platforms/nuttx/NuttX/include/cxx	# custom new
 	)
 
 	include_directories(
@@ -71,6 +72,11 @@ function(px4_os_add_flags)
 
 	add_definitions(
 		-D__PX4_NUTTX
+		-D__NuttX__
+		-D__GLIBCXX__
+		-D_LIBCPP_BUILDING_LIBRARY
+		-D_LIBCPP_BUILD_STATIC
+		# -D_LIBCPP_NO_EXCEPTIONS
 
 		-D_SYS_CDEFS_H_ # skip toolchain's <sys/cdefs.h>
 		-D_SYS_REENT_H_	# skip toolchain's <sys/reent.h>

@@ -41,8 +41,8 @@
 
 #pragma once
 
-#include <float.h>
-
+// #include <float.h>
+#include <cfloat>
 #include <commander/px4_custom_mode.h>
 #include <drivers/drv_hrt.h>
 #include <mathlib/mathlib.h>

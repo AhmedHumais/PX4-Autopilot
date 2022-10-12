@@ -130,7 +130,7 @@ bool FlightTaskOrbit::setRadius(float r)
 		_v = sign(_v) * sqrtf(_acceleration_max * r);
 	}
 
-	if (fabs(_r - r) > FLT_EPSILON) {
+	if (std::fabs(_r - r) > FLT_EPSILON) {
 		_circle_approach_line.reset();
 	}
 
@@ -140,7 +140,7 @@ bool FlightTaskOrbit::setRadius(float r)
 
 bool FlightTaskOrbit::setVelocity(const float v)
 {
-	if (fabs(v) < _velocity_max &&
+	if (std::fabs(v) < _velocity_max &&
 	    checkAcceleration(_r, v, _acceleration_max)) {
 		_v = v;
 		return true;

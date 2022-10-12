@@ -362,7 +362,7 @@ void Sih::send_gps()
 	_vehicle_gps_pos.vel_n_m_s = _gps_vel(0);           // GPS North velocity, (metres/sec)
 	_vehicle_gps_pos.vel_e_m_s = _gps_vel(1);           // GPS East velocity, (metres/sec)
 	_vehicle_gps_pos.vel_d_m_s = _gps_vel(2);           // GPS Down velocity, (metres/sec)
-	_vehicle_gps_pos.cog_rad = atan2(_gps_vel(1),
+	_vehicle_gps_pos.cog_rad = std::atan2(_gps_vel(1),
 					 _gps_vel(0)); // Course over ground (NOT heading, but direction of movement), -PI..PI, (radians)
 
 	_vehicle_gps_pos_pub.publish(_vehicle_gps_pos);

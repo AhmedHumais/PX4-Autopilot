@@ -183,7 +183,7 @@ float FlightTaskAutoLineSmoothVel::_getMaxXYSpeed() const
 	// (eg. Obstacle Avoidance)
 	bool xy_modified = (_target - _position_setpoint).xy().longerThan(FLT_EPSILON);
 	bool z_valid = PX4_ISFINITE(_position_setpoint(2));
-	bool z_modified =  z_valid && fabs((_target - _position_setpoint)(2)) > FLT_EPSILON;
+	bool z_modified =  z_valid && std::fabs((_target - _position_setpoint)(2)) > FLT_EPSILON;
 
 	Vector3f waypoints[3] = {pos_traj, _target, _next_wp};
 
@@ -212,7 +212,7 @@ float FlightTaskAutoLineSmoothVel::_getMaxZSpeed() const
 		z_setpoint = _position_setpoint(2);
 	}
 
-	const float distance_start_target = fabs(z_setpoint - pos_traj(2));
+	const float distance_start_target = std::fabs(z_setpoint - pos_traj(2));
 	const float arrival_z_speed = 0.f;
 
 	float max_speed = math::min(_trajectory[2].getMaxVel(), math::trajectory::computeMaxSpeedFromDistance(
